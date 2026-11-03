@@ -9,6 +9,7 @@ import OurFeatures from "../../../component/OurFeature"
 import ToolsForTeachers from "../../../component/ToolsTeacher"
 import Assessments from "../../../component/Assessements"
 import OtherFeatures from "../../../component/OtherFeatures"
+import Testimonial from "../../../component/Testimonial"
 const Home = () => {
   return (
     <div>
@@ -21,6 +22,7 @@ const Home = () => {
     <ToolsForTeachers/>
     <Assessments/>
     <OtherFeatures/>
+    <Testimonial/>
     </div>
   )
 }
