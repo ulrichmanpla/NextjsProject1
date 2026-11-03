@@ -1,11 +1,10 @@
 
-
-
+import Home from '../app/pages/Home'
 
 const page = () => {
   return (
     <div>
-      hola 
+    <Home/>
     </div>
   )
 }
