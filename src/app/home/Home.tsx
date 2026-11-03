@@ -11,9 +11,12 @@ import Assessments from "../../../component/Assessements"
 import OtherFeatures from "../../../component/OtherFeatures"
 import Testimonial from "../../../component/Testimonial"
 import LatestNews from "../../../component/LatestNews"
+import Footer from "../../../component/Footer"
+import Navbar from "../../../component/Navbar"
 const Home = () => {
   return (
     <div>
+      <Navbar/>
     <Hero1/>
     <Section1/>
     <CloudSoftware/>
@@ -25,6 +28,7 @@ const Home = () => {
     <OtherFeatures/>
     <Testimonial/>
     <LatestNews/>
+    <Footer/>
     </div>
   )
 }
