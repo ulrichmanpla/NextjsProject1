@@ -7,6 +7,7 @@ import AboutSkillline from "../../../component/AboutSkillLine"
 import Features from "../../../component/Features"
 import OurFeatures from "../../../component/OurFeature"
 import ToolsForTeachers from "../../../component/ToolsTeacher"
+import Assessments from "../../../component/Assessements"
 const Home = () => {
   return (
     <div>
@@ -17,6 +18,7 @@ const Home = () => {
     <Features/>
     <OurFeatures/>
     <ToolsForTeachers/>
+    <Assessments/>
     </div>
   )
 }
