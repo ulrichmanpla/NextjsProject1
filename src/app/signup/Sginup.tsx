@@ -8,14 +8,12 @@ import { useRouter } from "next/navigation";
 export default function SignUpPage() {
   const router = useRouter();
 
-  // Form Fields
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
   });
 
-  // Validation Errors State
   const [errors, setErrors] = useState<{
     username?: string;
     email?: string;
@@ -25,13 +23,11 @@ export default function SignUpPage() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    // Clear error for field when typing
     if (errors[e.target.name as keyof typeof errors]) {
       setErrors({ ...errors, [e.target.name]: undefined });
     }
   };
 
-  // Custom Form Validation
   const validateForm = () => {
     const newErrors: typeof errors = {};
 
@@ -60,7 +56,6 @@ export default function SignUpPage() {
 
     if (!validateForm()) return;
 
-    // Check if user already exists in LocalStorage
     const existingUsers = JSON.parse(localStorage.getItem("skilline_users") || "[]");
     const userExists = existingUsers.some((u: { email: string }) => u.email === formData.email);
 
@@ -69,11 +64,9 @@ export default function SignUpPage() {
       return;
     }
 
-    // Save new user info to LocalStorage
     const updatedUsers = [...existingUsers, formData];
     localStorage.setItem("skilline_users", JSON.stringify(updatedUsers));
 
-    // Redirect to Login page
     router.push("/login");
   };
 
@@ -81,7 +74,6 @@ export default function SignUpPage() {
     <div className="min-h-screen bg-[#FFF8EE] flex items-center justify-center p-6">
       <div className="bg-white w-full max-w-4xl rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
         
-        {/* Left Column: Image / Visual Banner */}
         <div className="relative bg-[#252641] p-8 md:p-12 flex flex-col justify-between text-white hidden md:flex">
           <div className="relative w-36 h-10">
             <Image
@@ -104,7 +96,6 @@ export default function SignUpPage() {
           <p className="text-xs text-[#8385A9]">&copy; 2026 Skilline Inc.</p>
         </div>
 
-        {/* Right Column: Sign Up Form */}
         <div className="p-8 sm:p-12 flex flex-col justify-center">
           <div className="mb-8 text-center md:text-left">
             <h3 className="text-2xl sm:text-3xl font-bold text-[#2F327D]">Create Account</h3>
@@ -112,7 +103,6 @@ export default function SignUpPage() {
           </div>
 
           <form onSubmit={handleSubmit} noValidate className="space-y-5">
-            {/* Username Input */}
             <div>
               <label className="block text-xs font-semibold text-[#2F327D] uppercase tracking-wider mb-2">
                 User Name
@@ -134,7 +124,6 @@ export default function SignUpPage() {
               )}
             </div>
 
-            {/* Email Input */}
             <div>
               <label className="block text-xs font-semibold text-[#2F327D] uppercase tracking-wider mb-2">
                 Email Address
@@ -156,7 +145,6 @@ export default function SignUpPage() {
               )}
             </div>
 
-            {/* Password Input */}
             <div>
               <label className="block text-xs font-semibold text-[#2F327D] uppercase tracking-wider mb-2">
                 Password
@@ -178,7 +166,6 @@ export default function SignUpPage() {
               )}
             </div>
 
-            {/* Register Button */}
             <button
               type="submit"
               className="w-full py-3.5 rounded-full bg-[#F48C06] text-white font-semibold text-sm hover:bg-[#e07f00] transition-colors shadow-lg shadow-orange-100 mt-2"
@@ -187,7 +174,6 @@ export default function SignUpPage() {
             </button>
           </form>
 
-          {/* Login Navigation Link */}
           <p className="text-center text-xs text-[#696984] mt-6">
             Already have an account?{" "}
             <Link href="/login" className="text-[#F48C06] font-semibold hover:underline">

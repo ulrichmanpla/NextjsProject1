@@ -8,13 +8,11 @@ import { useRouter } from "next/navigation";
 export default function LoginPage() {
   const router = useRouter();
 
-  // Form Fields
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  // Custom Errors
   const [errors, setErrors] = useState<{
     email?: string;
     password?: string;
@@ -23,13 +21,11 @@ export default function LoginPage() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    // Clear errors when typing
     if (errors[e.target.name as keyof typeof errors] || errors.general) {
       setErrors({ ...errors, [e.target.name]: undefined, general: undefined });
     }
   };
 
-  // Custom Form Validation
   const validateForm = () => {
     const newErrors: typeof errors = {};
 
@@ -52,10 +48,8 @@ export default function LoginPage() {
 
     if (!validateForm()) return;
 
-    // Retrieve saved users from LocalStorage
     const existingUsers = JSON.parse(localStorage.getItem("skilline_users") || "[]");
 
-    // Compare email & password against stored users
     const matchedUser = existingUsers.find(
       (u: { email: string; password: string }) => u.email === formData.email
     );
@@ -70,10 +64,8 @@ export default function LoginPage() {
       return;
     }
 
-    // Store active user session info in LocalStorage
     localStorage.setItem("skilline_active_user", JSON.stringify(matchedUser));
 
-    // Redirect to home page
     router.push("/");
   };
 
@@ -81,7 +73,6 @@ export default function LoginPage() {
     <div className="min-h-screen bg-[#FFF8EE] flex items-center justify-center p-6">
       <div className="bg-white w-full max-w-4xl rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
         
-        {/* Left Column: Image / Visual Banner */}
         <div className="relative bg-[#252641] p-8 md:p-12 flex flex-col justify-between text-white hidden md:flex">
           <div className="relative w-36 h-10">
             <Image
@@ -103,14 +94,12 @@ export default function LoginPage() {
 
         </div>
 
-        {/* Right Column: Login Form */}
         <div className="p-8 sm:p-12 flex flex-col justify-center">
           <div className="mb-8 text-center md:text-left">
             <h3 className="text-2xl sm:text-3xl font-bold text-[#2F327D]">Login</h3>
             <p className="text-[#696984] text-sm mt-1">Enter your credentials to continue</p>
           </div>
 
-          {/* General Authentication Error Banner */}
           {errors.general && (
             <div className="mb-4 p-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-xs font-medium">
               {errors.general}
@@ -118,7 +107,6 @@ export default function LoginPage() {
           )}
 
           <form onSubmit={handleSubmit} noValidate className="space-y-5">
-            {/* Email Input */}
             <div>
               <label className="block text-xs font-semibold text-[#2F327D] uppercase tracking-wider mb-2">
                 Email Address
@@ -140,7 +128,6 @@ export default function LoginPage() {
               )}
             </div>
 
-            {/* Password Input */}
             <div>
               <label className="block text-xs font-semibold text-[#2F327D] uppercase tracking-wider mb-2">
                 Password
@@ -162,7 +149,6 @@ export default function LoginPage() {
               )}
             </div>
 
-            {/* Login Button */}
             <button
               type="submit"
               className="w-full py-3.5 rounded-full bg-[#F48C06] text-white font-semibold text-sm hover:bg-[#e07f00] transition-colors shadow-lg shadow-orange-100 mt-2"
@@ -171,7 +157,6 @@ export default function LoginPage() {
             </button>
           </form>
 
-          {/* Sign Up Link */}
           <p className="text-center text-xs text-[#696984] mt-6">
             Don&apos;t have an account?{" "}
             <Link href="/signup" className="text-[#F48C06] font-semibold hover:underline">

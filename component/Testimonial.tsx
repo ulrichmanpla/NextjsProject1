@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-// Define testimonial items with different images and reviews
 const testimonials = [
   {
     id: 1,
@@ -44,20 +43,18 @@ export default function TestimonialSection() {
   const currentTestimonial = testimonials[currentIndex];
 
   return (
-    <section className="py-16 md:py-24 bg-white overflow-hidden">
+    <section className="py-16 md:py-15 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         
-        {/* Left Column: Testimonial Header & CTA */}
         <div className="space-y-6 max-w-xl">
-          {/* Subtitle with line */}
           <div className="flex items-center gap-3">
-            <span className="w-12 h-[2px] bg-[#696984]" />
+            <span className="w-12 h-0.5 bg-[#696984]" />
             <span className="text-xs uppercase tracking-widest font-semibold text-[#696984]">
               TESTIMONIAL
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-bold text-[#2F327D]">
+          <h2 className="text-2xl sm:text-4xl lg:text-[40px] font-bold text-[#2F327D]">
             What They Say?
           </h2>
           
@@ -86,14 +83,10 @@ export default function TestimonialSection() {
           </div>
         </div>
 
-        {/* Right Column: Carousel Image & Review Card */}
         <div className="relative flex justify-center items-center">
-          
-          {/* Background Card Wrapper */}
-          <div className="relative w-full max-w-[420px] lg:max-w-[460px]">
+          <div className="relative w-full max-w-70 lg:max-w-75">
             
-            {/* User Portrait Image Container */}
-            <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-md">
+            <div className="relative w-full aspect-3/4 rounded-3xl overflow-hidden shadow-md">
               <Image
                 src={currentTestimonial.image}
                 alt={currentTestimonial.author}
@@ -103,19 +96,17 @@ export default function TestimonialSection() {
                 priority
               />
 
-              {/* Next Arrow Button positioned over the image edge */}
               <button
                 type="button"
                 onClick={handleNext}
                 aria-label="Next testimonial"
-                className="absolute top-1/2 -right-5 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center text-[#2F327D] hover:bg-gray-50 hover:scale-105 transition-all z-20"
+                className="absolute top-1/3 right-0 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-xl flex items-center justify-center text-[#2F327D] hover:bg-gray-50 hover:scale-105 transition-all z-20"
               >
                 ❯
               </button>
             </div>
 
-            {/* Floating Review Card Overlay at the Bottom */}
-            <div className="absolute -bottom-10 sm:-bottom-12 -left-6 sm:-left-12 right-0 bg-white p-6 sm:p-8 rounded-2xl shadow-xl border-l-4 border-[#F48C06] z-10 space-y-4">
+            <div className="absolute -bottom-10 sm:-bottom-12 left-10 md:left-10 -md:-bottom-10 sm:-left-12 -right-10 bg-white p-6 sm:p-8 rounded-2xl shadow-xl border-l-4 border-[#F48C06] z-10 space-y-4">
               <p className="text-[#696984] text-xs sm:text-sm leading-relaxed italic">
                 {currentTestimonial.quote}
               </p>
@@ -130,7 +121,6 @@ export default function TestimonialSection() {
                   </p>
                 </div>
 
-                {/* Star Ratings */}
                 <div className="flex items-center gap-1 text-[#FFB800] text-sm">
                   {[...Array(currentTestimonial.rating)].map((_, i) => (
                     <span key={i}>★</span>
